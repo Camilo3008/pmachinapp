@@ -10,7 +10,7 @@ class User(AbstractUser):
         CEDULA = 'cedula', 'cedula'
         TARJETA_IDENTIDAD = 'tarjeta_identidad', 'tarjeta_identidad'
 
-    numero_documento = models.PositiveBigIntegerField(null=True, blank=True)
+    numero_documento = models.PositiveBigIntegerField(null=True, blank=True, unique=True)
     tipo_documento = models.CharField(max_length=20,choices=Tipo_documento.choices, default=Tipo_documento.TARJETA_IDENTIDAD)
     especialidad = models.CharField(max_length=150,null=True ,blank=True)
     empresa = models.CharField(max_length=150, null=True ,blank=True)
