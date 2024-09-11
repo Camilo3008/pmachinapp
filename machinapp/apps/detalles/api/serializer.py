@@ -5,18 +5,18 @@ from collections import defaultdict
 ######### serializadores de otros modelos ###########
 from apps.variables.api.serializer import VariablesSerializador
 from apps.fichas.api.serializer import FichaSerializerDetalle
-### fin'
 
 
 #### todo los datos de diferentes tablas
 class DetalleSerializador(serializers.ModelSerializer):
-    fk_variable = VariablesSerializador()
-    fk_ficha = FichaSerializerDetalle()
+    
     class Meta:
         model = Detalle
-        fields = [ 'valor', 'fk_variable', 'fk_ficha' ]
-    
-                    
+        fields = ('id', 'valor', 'fk_variable', 'fk_ficha' )
+
+      
+
+
     """ def to_representation(self, instance):
         data = super().to_representation(instance)
 

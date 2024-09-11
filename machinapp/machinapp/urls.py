@@ -26,6 +26,7 @@ from apps.sedes.api.router import router_sede
 from apps.areas.api.router import router_areas
 from apps.mantenimientos.api.router import router_mantenimiento
 
+
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 
@@ -43,7 +44,6 @@ schema_view = get_schema_view(
    public=True,
 )
 
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router_rol.urls)),
@@ -58,9 +58,9 @@ urlpatterns = [
     path('api/ambiente/', include('apps.ambientes.api.router')),
     path('api/', include('apps.tipomantenimiento.api.router')),
     path('api/', include('apps.tipoequipo.api.router')),
-    path('api/', include('apps.fichas.api.router')),
+    path('api/', include('apps.fichas.api.router')), 
     path('api/', include('apps.variables.api.router')),
-    path('api/detalle/', include('apps.detalles.api.router')),
+    path('api/', include('apps.detalles.api.router')),
     path('api/', include('apps.actividades.api.router')),
     #documentacion
     path('docs/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),

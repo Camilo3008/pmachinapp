@@ -7,4 +7,4 @@ from apps.tipoequipo.models import TipoEquipo
 class TipoEquipoSerializer(serializers.ModelSerializer):
     class Meta:
         model = TipoEquipo
-        fields = '__all__'
+        fields = ('nombre_equipo', 'id')
