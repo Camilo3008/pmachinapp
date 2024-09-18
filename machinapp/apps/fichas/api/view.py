@@ -14,14 +14,61 @@ from apps.fichas.models import Ficha
 from apps.fichas.api.serializer import FichaSerializerAmb, FichaSerializerDetalle, FichaSerializerRegisterUpdate, FichaLisar
  
 
-#registrar y actualizar una ficha tecnica.
+
+import qrcode
+
+
+#registrar  una ficha tecnica.
 # url //http://127.0.0.1:8000/api/ficha/2/
 class FichaRegisterUpdate(viewsets.ModelViewSet):
 
     serializer_class = FichaSerializerRegisterUpdate
     queryset = Ficha.objects.all()
-    http_method_names = ['post', 'put']
+    http_method_names = [ 'put']
     parser_classes = [MultiPartParser, FormParser]
+
+
+class FichaRegistrar(APIView):
+
+    def post(self, request):
+        serializer = FichaSerializerRegisterUpdate(data = request.data)
+
+        if serializer.is_valid():
+            instance = serializer.save()
+            qr_code_url = self.generate_qr_code(instance.id)
+
+            instance.codigoQR = qr_code_url
+            instance.save()
+            return Response({'id': instance.id, 'qr_code_path': qr_code_url}, status=status.HTTP_201_CREATED)
+        
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def generate_qr_code(self, object_id):
+        # Genera el código QR
+        qr = qrcode.QRCode(
+            version=1,
+            error_correction=qrcode.constants.ERROR_CORRECT_L,
+            box_size=10,
+            border=4,
+        )
+        linkPagina =  f'http//{object_id}'
+        qr.add_data(linkPagina)
+        qr.make(fit=True)
+        # Guarda el código QR en un archivo
+        img = qr.make_image(fill_color="black", back_color="white")
+        codigoQR = f'{object_id}.png'  
+        img.save(codigoQR)
+        return codigoQR
+
+
+
+
+
+
+
+
+
+
 
 
 #listar todas las  fichas

@@ -20,7 +20,8 @@ class FichaSerializerRegisterUpdate(serializers.ModelSerializer):
             'imagen',
             'fichaRespaldo',
             'fk_ambiente',
-            'fk_tipo_equipo'
+            'fk_tipo_equipo',
+            'codigoQR'
         )
 
 
@@ -38,7 +39,8 @@ class FichaLisar(serializers.ModelSerializer):
             'imagen',
             'fichaRespaldo',
             'fk_ambiente',
-            'fk_tipo_equipo'
+            'fk_tipo_equipo',
+            'codigoQR'
         )
 
 
