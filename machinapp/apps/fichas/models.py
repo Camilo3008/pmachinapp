@@ -19,9 +19,9 @@ class Ficha(models.Model):
     estado = models.CharField(max_length=20, choices=Estado.choices, default=Estado.OPERACION)
     
     #documentos
-    imagen = models.ImageField(null=True, blank=True, upload_to='fichas/imagenEquipo/')
+    imagen = models.ImageField(null=True, blank=True, upload_to='fichas/imagenEquipo')
     fichaRespaldo = models.FileField(null=True, blank=True, upload_to='fichas/fichaRespaldo')
-    codigoQR = models.ImageField(null=True, blank=True, upload_to='fichas/imagenQR/')
+    codigoQR = models.ImageField(null=True, blank=True, upload_to='fichas/imagenQR')
 
     # llaves foraneas
     fk_ambiente = models.ForeignKey(Ambientes, on_delete=SET_NULL, null=True, blank=True)
