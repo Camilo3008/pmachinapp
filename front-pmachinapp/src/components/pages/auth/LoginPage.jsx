@@ -1,7 +1,12 @@
+import { LoginLayout } from "../../../index";
+
 export const LoginPage = () => {
   return (
     <>
-      <span>hola desde la pagina de login</span>
+      <LoginLayout>
+        {" "}
+        <span>hola desde la pagina de login</span>
+      </LoginLayout>
     </>
   );
 };
