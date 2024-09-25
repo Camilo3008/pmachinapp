@@ -1,1 +1,2 @@
 export { useAuth } from "./useAuthContext";
+export { useFetchDataUser } from "./useFetch-data-users";
