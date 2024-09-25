@@ -3,6 +3,7 @@ export { Modal } from "./modals/Modals";
 // forms
 export { InputForm } from "./forms/InputForm";
 export { Search } from "./forms/SearchBar";
+export { Select } from "./forms/SelectComponent";
 
 // navegatio
 export { DropDown } from "./navegation/DropDown";

@@ -7,3 +7,4 @@ export { HomePage } from "./home/HomePage";
 
 // admin
 export { UserManagementPage } from "./admin/UserManagementPage";
+export { EditUserAdmin } from "./admin/EditUserForAdmin";

@@ -1,4 +1,4 @@
-import { Table, Search, Modal, useFetchDataUser } from "../../../index";
+import { Table, Search, Modal, useFetchDataUser, UserForm } from "../../../index";
 import { useState } from "react";
 import { Button, useDisclosure } from "@nextui-org/react";
 import { useNavigate } from "react-router-dom";
@@ -117,7 +117,7 @@ export const TableUser = () => {
         titulo={"Registrar Usuario"}
         className="rounded-lg shadow-lg bg-white p-6 max-w-lg mx-auto"
       >
-        {/*  <UserForm /> */}
+         <UserForm />
       </Modal>
 
       <Table
