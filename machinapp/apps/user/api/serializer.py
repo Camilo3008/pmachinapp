@@ -1,4 +1,4 @@
-from rest_framework.serializers import ModelSerializer
+from rest_framework.serializers import ModelSerializer, ValidationError
 
 ## model de user 
 from apps.user.models import User
@@ -8,6 +8,33 @@ class UserSerializadorPost(ModelSerializer):
     class Meta:
         model = User
         fields = ['id', 'username', 'first_name', 'last_name', 'email', 'numero_documento', 'tipo_documento','password', 'fk_rol',]
+        
+        extra_kwargs = {
+            'password': {'write_only': True, 'required': False}
+        }
+
+    def update(self, instance ,validated_data):
+        instance.username = validated_data.get('username',instance.username)
+        instance.email = validated_data.get('email',instance.email)
+        instance.first_name = validated_data.get('first_name',instance.first_name)
+        instance.last_name = validated_data.get('last_name',instance.last_name)
+        instance.tipo_documento = validated_data.get('tipo_documento',instance.tipo_documento)
+        # para actualizar un usuario con perfil de tecnico
+        instance.empresa = validated_data.get('empresa', instance.empresa)
+        instance.especialidad = validated_data.get('especialidad', instance.especialidad)
+        instance.fk_rol = validated_data.get('fk_rol', instance.fk_rol)
+        password = validated_data.get('password')
+        instance.password = validated_data.get('password', instance.password)     
+
+        # encriptar la contraseña 
+        if password:
+            instance.set_password(instance.password)
+
+        
+        instance.save()
+        return instance
+        
+        
     def create(self, validated_data):
         password = validated_data.pop('password', None)
         instance = self.Meta.model(**validated_data)
@@ -28,18 +55,7 @@ class UserSerializadorGet(ModelSerializer):
     fk_rol = SerializadorRolUser()
     class Meta:
         model = User
-        fields = ['id', 
-                  'username',
-                  'first_name',
-                  'last_name',
-                  'email',
-                  'numero_documento',
-                  'tipo_documento',
-                  'password',
-                  'fk_rol',
-                  'empresa',
-                  'especialidad'
-                  ]
+        fields = ['id', 'username','first_name','last_name','email','numero_documento','tipo_documento','fk_rol','empresa','especialidad' ]
         
         
         
@@ -60,24 +76,4 @@ class UserUpdateSerializer(ModelSerializer):
                   'especialidad'
                   ]
     
-    def update(self, instance ,validated_data):
-        instance.username = validated_data.get('username',instance.username)
-        instance.email = validated_data.get('email',instance.email)
-        instance.first_name = validated_data.get('first_name',instance.first_name)
-        instance.last_name = validated_data.get('last_name',instance.last_name)
-        instance.tipo_documento = validated_data.get('tipo_documento',instance.tipo_documento)
-        # para actualizar un usuario con perfil de tecnico
-        instance.empresa = validated_data.get('empresa', instance.empresa)
-        instance.especialidad = validated_data.get('especialidad', instance.especialidad)
-        instance.fk_rol = validated_data.get('fk_rol', instance.fk_rol)
-        
-        
-        instance.password = validated_data.get('password', instance.password)
-        
-        
-        # encriptar la contraseña 
-        if instance.password:
-            instance.set_password(instance.password)
-        
-        instance.save()
-        return instance
+    
