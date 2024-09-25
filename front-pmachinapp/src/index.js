@@ -10,3 +10,6 @@ export { v } from "./styles/Variables";
 
 //sevice
 export { axiosClient } from "./service/axiosClient";
+
+//utils
+export * from "./utils/index";

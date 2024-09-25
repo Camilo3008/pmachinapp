@@ -1,7 +1,12 @@
-export const Icons = () => {
+// eslint-disable-next-line react/prop-types
+export const Icons = ({ icon: Icon, onClick }) => {
   return (
     <>
-      <span> hola desde los iconos</span>
+      <Icon
+        className="h-6 w-6 cursor-pointer"
+        aria-hidden="true"
+        onClick={onClick}
+      />
     </>
   );
 };
