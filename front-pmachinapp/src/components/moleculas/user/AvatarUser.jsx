@@ -1,6 +1,7 @@
 import { DropDown, useAuth } from "../../../index";
 import { User } from "@nextui-org/react";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export const AvatarUser = () => {
   const { user, isLoading, logout } = useAuth();
@@ -28,6 +29,11 @@ export const AvatarUser = () => {
     <>
       <p className="font-bold">{user.first_name}</p>
       <p className="font-bold">{user.email}</p>
+    </>,
+    <>
+      <p className="h-full">
+        <Link to={"/perfil"}>administrar perfil</Link>
+      </p>
     </>,
 
     <>

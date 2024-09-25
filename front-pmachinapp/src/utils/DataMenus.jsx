@@ -1,41 +1,41 @@
+import { v } from "../index";
 export const menus = [
-    { name: "inicio", link: "/home", icon: "V.HomeIcon" },
-    {
-      name: "sitios",
-      link: "#",
-      icon: "V.MapIcon",
-      submenu: true,
-      submenus: [
-        { name: "sedes", link: "/Sedes", logo: "V.BuildingLibraryIcon" },
-        { name: "areas", link: "/Areas", logo: "V.MapIcon" },
-        { name: "ambientes", link: "/Ambientes", logo: "V.MapIcon" },
-      ],
-    },
-    {
-      name: "mantenimientos",
-      link: "#",
-      icon: "V.DocumentTextIcon",
-      submenu: true,
-      submenus: [
-        {
-          name: "registrar_solicitud",
-          link: "/solicitud/registrar",
-          logo: "V.PencilSquareIcon",
-        },
-        {
-          name: "registrar_mantenimiento",
-          link: "/crear_ficha_mantenimiento",
-          logo: "V.WrenchIcon",
-        },
-        { name: "solicitudes", link: "/solicitud", logo: "V.DocumentIcon" },
-      ],
-    },
-    { name: "equipo_maquinaria", link: "/Maquinas", icon: "V.ServerIcon" },
-    { name: "historial", link: "/Historial", icon: "V.ClockIcon" },
-    {
-      name: "panel_control",
-      link: "/panel-control",
-      icon: "FaUserGear",
-    },
-  ];
-  
+  { name: "Inicio", link: "/home", icon: v.HomeIcon },
+  {
+    name: "Sitios",
+    link: "#",
+    icon: v.MapIcon,
+    submenu: true,
+    submenus: [
+      { name: "Sedes", link: "/Sedes", logo: v.BuildingLibraryIcon },
+      { name: "Areas", link: "/Areas", logo: v.MapIcon },
+      { name: "Ambientes", link: "/Ambientes", logo: v.MapIcon },
+    ],
+  },
+  {
+    name: "Mantenimientos",
+    link: "#",
+    icon: v.DocumentTextIcon,
+    submenu: true,
+    submenus: [
+      {
+        name: "Registrar_solicitud",
+        link: "/solicitud/registrar",
+        logo: v.PencilSquareIcon,
+      },
+      {
+        name: "Registrar_mantenimiento",
+        link: "/crear_ficha_mantenimiento",
+        logo: v.WrenchIcon,
+      },
+      { name: "Solicitudes", link: "/solicitud", logo: v.DocumentIcon },
+    ],
+  },
+  { name: "Equipo_maquinaria", link: "/Maquinas", icon: v.ServerIcon },
+  { name: "Historial", link: "/Historial", icon: v.ClockIcon },
+  {
+    name: "Panel_control",
+    link: "/panel-control",
+    icon: v.UserGroupIcon,
+  },
+];

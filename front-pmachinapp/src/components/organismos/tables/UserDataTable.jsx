@@ -1,4 +1,10 @@
-import { Table, Search, Modal, useFetchDataUser, UserForm } from "../../../index";
+import {
+  Table,
+  Search,
+  Modal,
+  useFetchDataUser,
+  UserForm,
+} from "../../../index";
 import { useState } from "react";
 import { Button, useDisclosure } from "@nextui-org/react";
 import { useNavigate } from "react-router-dom";
@@ -14,8 +20,6 @@ export const TableUser = () => {
   if (!usuarios) {
     return <div>No hay usuario autenticado</div>;
   }
-
-  // para navegar a paginas
 
   // prueba para roles
 
@@ -44,15 +48,6 @@ export const TableUser = () => {
     setfiltrarUsuario(filtrar);
   };
 
-  // columnas para usuarios
-  /* const columnasUsuarios = [
-      "Nombre",
-      "Apellidos",
-      "Correo",
-      "Identificacion",
-      "Tipo",
-    ]; */
-
   const columnasUsuarios = [
     "Nombre",
     "Apellidos",
@@ -71,7 +66,7 @@ export const TableUser = () => {
     const resultadoUsuario = usuarios.find(
       (persona) => persona.numero_documento === numero_identificacion
     );
-    console.log(resultadoUsuario);
+
     navigate("/panel-control/edit", { state: { resultadoUsuario } });
   };
 
@@ -117,7 +112,7 @@ export const TableUser = () => {
         titulo={"Registrar Usuario"}
         className="rounded-lg shadow-lg bg-white p-6 max-w-lg mx-auto"
       >
-         <UserForm />
+        <UserForm />
       </Modal>
 
       <Table

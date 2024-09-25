@@ -4,6 +4,8 @@ export { ResetpasswordPage } from "./auth/ForgotPasswordPage";
 
 // home
 export { HomePage } from "./home/HomePage";
+export { PerfilPage } from "./home/PerifilPage";
+export { PerfilSettingsPage } from "./home/PerfilSettingsPage";
 
 // admin
 export { UserManagementPage } from "./admin/UserManagementPage";

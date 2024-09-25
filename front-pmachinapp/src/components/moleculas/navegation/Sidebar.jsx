@@ -62,7 +62,7 @@ export const SideBar = ({ rol }) => {
                       }}
                     >
                       <div className=" rounded-full group-hover:scale-110 transition-transform duration-200">
-                        {/* <Icons icon={menu.icon} /> */}
+                        <Icons icon={menu.icon} />
                       </div>
                       <span
                         style={{
@@ -94,7 +94,8 @@ export const SideBar = ({ rol }) => {
                           >
                             {open ? (
                               <>
-                                {/*  <Icons icon={submenu.logo} /> {submenu?.name} */}
+                                {/*  <Icons icon={submenu.logo} /> {submenu?.name} */}{" "}
+                                {submenu?.name}
                               </>
                             ) : (
                               <Tooltip

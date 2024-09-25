@@ -22,7 +22,7 @@ export const AuthProvider = ({ children }) => {
     queryKey: ["userlogged"],
     queryFn: async () => {
       const response = await axiosClient.get("user/me/");
-      /*  console.log(response.data); */
+      /*   console.log(response.data); */
       return response.data;
     },
     retry: false,
