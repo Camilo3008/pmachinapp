@@ -1,4 +1,4 @@
-import { Header, Footer, Modal } from "../../index";
+import { Header, Footer, Modal, LoginForm } from "../../index";
 import { Button, useDisclosure } from "@nextui-org/react";
 
 // eslint-disable-next-line react/prop-types
@@ -12,7 +12,7 @@ export const LoginLayout = ({ children }) => {
         <Header
           contenido={
             <Button onPress={onOpen} color="primary">
-              Hola
+              Iniciar Sesion
             </Button>
           }
           className="bg-white shadow-md"
@@ -23,7 +23,7 @@ export const LoginLayout = ({ children }) => {
           titulo={"Login"}
           className="rounded-lg shadow-lg bg-white p-6 max-w-lg mx-auto"
         >
-          {/*  <LoginForm /> */}
+          <LoginForm />
         </Modal>
         <main className="flex-grow h-full px-4 py-6 sm:px-6 lg:px-8 bg-gray-50 overflow-auto">
           {children}
