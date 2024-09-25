@@ -1,3 +1,5 @@
+export * from "./context";
+export * from "./components";
 
-
-export * from "./components"
+// rutas
+export { AppRouter } from "./routers/router";

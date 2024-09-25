@@ -1,7 +1,19 @@
+import { ProviderContexts, AppRouter } from "./index";
+import { ToastContainer } from "react-toastify";
 const App = () => {
   return (
     <>
-      <div className="flex justify-center items-center">Hola Machinapp</div>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={1500}
+        hideProgressBar={false}
+        closeOnClick
+        pauseOnHover
+        theme="light"
+      />
+      <ProviderContexts>
+        <AppRouter />
+      </ProviderContexts>
     </>
   );
 };
