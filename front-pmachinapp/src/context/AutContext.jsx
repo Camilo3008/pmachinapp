@@ -6,6 +6,7 @@ export const AuthContext = createContext();
 
 // eslint-disable-next-line react/prop-types
 export const AuthProvider = ({ children }) => {
+  const [usuarioRol, setUsuarioRol] = useState("");
   const queryClient = useQueryClient();
 
   const [shouldFetch, setShouldFetch] = useState(false);
@@ -22,7 +23,7 @@ export const AuthProvider = ({ children }) => {
     queryKey: ["userlogged"],
     queryFn: async () => {
       const response = await axiosClient.get("user/me/");
-      /*   console.log(response.data); */
+      setUsuarioRol(response.data.fk_rol.nombre);
       return response.data;
     },
     retry: false,
@@ -81,6 +82,7 @@ export const AuthProvider = ({ children }) => {
     isError,
     isFetching,
     refetch,
+    usuarioRol,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

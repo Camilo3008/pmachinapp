@@ -9,7 +9,7 @@ export const menus = [
     submenus: [
       { name: "Sedes", link: "/Sedes", logo: v.BuildingLibraryIcon },
       { name: "Areas", link: "/Areas", logo: v.MapIcon },
-      { name: "Ambientes", link: "/Ambientes", logo: v.MapIcon },
+      { name: "Ambientes", link: "/sitios/ambientes", logo: v.MapIcon },
     ],
   },
   {

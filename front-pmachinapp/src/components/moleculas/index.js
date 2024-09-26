@@ -16,3 +16,6 @@ export { AvatarUser } from "./user/AvatarUser";
 // table
 export { Paginacion } from "./tables/Pagination";
 export { Table } from "./tables/DataTable";
+
+//card
+export { CardState } from "./cards/Cards";
