@@ -50,7 +50,7 @@ export const HomePage = () => {
 
   return (
     <>
-      <Layout>
+      <Layout pagina={"Inicio"}>
         {cargando && <>Cargando</>}
         {userLoading && <>Cargando</>}
         <div className="p-5">

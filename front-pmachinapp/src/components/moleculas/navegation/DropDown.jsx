@@ -17,9 +17,9 @@ export const DropDown = ({ DropdownTriggerElement, dropdown, onClick }) => {
           {dropdown.map((item, index) => (
             <DropdownItem
               key={index}
-              textValue={`item ${index}`}
+              textValue={`item-${index}`}
               onClick={onClick}
-              className="cursor-pointer flex text-center"
+              className="cursor-pointer flex text-center h-11"
             >
               {item}
             </DropdownItem>

@@ -1,10 +1,22 @@
-import { InputForm, Select, useRegistroUsuario } from "../../../index";
-import { Button } from "@nextui-org/react";
+import {
+  InputForm,
+  Select,
+  useRegistroUsuario,
+  useRolQuery,
+  tipoDocumento,
+  useFetchDataUser,
+} from "../../../index";
+import { Button, Spinner } from "@nextui-org/react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 export const UserForm = () => {
   const [errores, setError] = useState({});
+  //
+  const [cargando, setCargando] = useState(false);
+  const { isLoading: loadinRol, rolCache } = useRolQuery();
+  const { refetch } = useFetchDataUser();
 
   const {
     register,
@@ -16,14 +28,22 @@ export const UserForm = () => {
   const registroUsuario = useRegistroUsuario();
 
   const handleOnSubmitDataUser = async (data) => {
+    setCargando(true);
     try {
       await registroUsuario.mutateAsync(data);
       reset();
+      setCargando(false);
+      refetch();
+      toast.success("Registro de usuario con exito");
     } catch (error) {
       console.error(error.response.data);
       setError(error.response.data);
     }
   };
+
+  if (loadinRol) {
+    return <Spinner />;
+  }
 
   return (
     <>
@@ -97,13 +117,14 @@ export const UserForm = () => {
 
           <div>
             <Select
-              options={[{ name: "cedula", pantalla: "Cedula de Ciudadania" }]}
-              name="tipo_documento"
+              options={rolCache}
+              name="fk_rol"
               placeholder="Elija un Rol"
-              valueKey="name"
-              textKey="name"
+              valueKey="id"
+              textKey="nombre"
               register={register}
-              label="hola"
+              label="Roles"
+              errors={errors}
             />
           </div>
         </div>
@@ -119,24 +140,23 @@ export const UserForm = () => {
           </div>
 
           <div className="flex flex-col w-full  justify-center">
-            {" "}
             <Select
-              options={[{ roles: "Roles" }]}
-              name="rol"
-              placeholder="Elija un Rol"
-              valueKey="roles"
-              textKey="roles"
+              options={tipoDocumento}
+              name="tipo_documento"
+              placeholder="Elija el Tipo de documento"
+              valueKey="name"
+              textKey="pantalla"
               register={register}
               label="Roles"
+              errors={errors}
             />{" "}
           </div>
         </div>
 
-        <input type="hidden" {...register("username")} value={"hola"} />
+        {/* <input type="hidden" {...register("username")} value={"hola"} /> */}
 
-        <Button color={"primary"} type={"submit"}>
-          {" "}
-          Registrar{" "}
+        <Button color={"primary"} type={"submit"} isLoading={cargando}>
+          Registrar
         </Button>
       </form>
     </>

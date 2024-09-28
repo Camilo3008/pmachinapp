@@ -6,6 +6,7 @@ export const useFetchDataUser = () => {
     data: usuarios,
     error,
     isLoading,
+    refetch,
   } = useQuery({
     queryKey: ["usuarios-cache"],
     queryFn: async () => {
@@ -24,6 +25,7 @@ export const useFetchDataUser = () => {
 
   return {
     usuarios,
+    refetch,
     error,
     isLoading,
   };

@@ -113,24 +113,6 @@ export const SideBar = ({ rol }) => {
                 )
             )}
           </ul>
-          {/* <Select
-            value={lenguage}
-            aria-label="Seleccionar idioma"
-            label="Elige un idioma"
-            onChange={handleSelectionChange}
-            className="max-w-xs pt-20"
-            variant="bordered"
-            color="primary"
-            size="md"
-            startContent={<Icons icon={V.GlobeAltIcon} />}
-          >
-            <SelectItem key="en" value="en">
-              Inglés
-            </SelectItem>
-            <SelectItem key="es" value="es">
-              Español
-            </SelectItem>
-          </Select> */}
         </div>
       </nav>
     </>

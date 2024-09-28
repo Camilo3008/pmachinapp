@@ -5,7 +5,7 @@ from apps.roles.models import Rol
 class SerializadorRol(ModelSerializer):
     class Meta:
         model = Rol
-        fields = ['nombre', 'descripcion']
+        fields = [ 'id', 'nombre', 'descripcion']
 
 
 

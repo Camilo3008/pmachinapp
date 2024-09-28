@@ -1,5 +1,5 @@
 import { DropDown, useAuth } from "../../../index";
-import { User } from "@nextui-org/react";
+import { User, Spinner } from "@nextui-org/react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
@@ -12,13 +12,8 @@ export const AvatarUser = () => {
     logout();
     navigate("/");
   };
-
-  /*   useEffect(() => {
-      console.log(user);
-    }, [user]); */
-
   if (isLoading) {
-    <>cargando</>;
+    return <Spinner />;
   }
 
   if (!user) {
@@ -32,12 +27,14 @@ export const AvatarUser = () => {
     </>,
     <>
       <p className="h-full">
-        <Link to={"/perfil"}>administrar perfil</Link>
+        <Link to={"/perfil"}>Administrar Perfil</Link>
       </p>
     </>,
 
     <>
-      <div onClick={handleLoguot}> salir </div>
+      <div className="h-full" onClick={handleLoguot}>
+        salir
+      </div>
     </>,
   ];
 

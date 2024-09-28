@@ -19,23 +19,31 @@ export const menus = [
     submenu: true,
     submenus: [
       {
-        name: "Registrar_solicitud",
+        name: "Registrar solicitud",
         link: "/solicitud/registrar",
         logo: v.PencilSquareIcon,
       },
       {
-        name: "Registrar_mantenimiento",
+        name: "Registrar Mantenimiento",
         link: "/crear_ficha_mantenimiento",
         logo: v.WrenchIcon,
       },
       { name: "Solicitudes", link: "/solicitud", logo: v.DocumentIcon },
     ],
   },
-  { name: "Equipo_maquinaria", link: "/Maquinas", icon: v.ServerIcon },
+  { name: "Equipo maquinaria", link: "/Maquinas", icon: v.ServerIcon },
   { name: "Historial", link: "/Historial", icon: v.ClockIcon },
   {
-    name: "Panel_control",
+    name: "Panel control",
     link: "/panel-control",
     icon: v.UserGroupIcon,
+  },
+];
+
+export const tipoDocumento = [
+  { name: "cedula", pantalla: "Cedula de Ciudadania" },
+  {
+    name: "tarjeta_identidad",
+    pantalla: "Tarjeta de idendidad",
   },
 ];

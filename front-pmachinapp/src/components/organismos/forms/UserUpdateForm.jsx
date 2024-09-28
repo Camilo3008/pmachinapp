@@ -1,4 +1,12 @@
-import { InputForm, Select, axiosClient, useAuth } from "../../../index";
+import {
+  InputForm,
+  Select,
+  axiosClient,
+  useAuth,
+  tipoDocumento,
+  useRolQuery,
+  useFetchDataUser,
+} from "../../../index";
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Button, Input } from "@nextui-org/react";
@@ -15,6 +23,11 @@ export const UserUpdateForm = ({ userData }) => {
   const [localUser, setLocalUser] = useState({ imagen: "" });
   // carga del componente
   const [isLoading, setIsLoading] = useState(false);
+
+  // roles
+  const { rolCache, isLoading: loadingRol } = useRolQuery();
+  // recargamos la info del cache
+  const { refetch } = useFetchDataUser();
 
   const {
     handleSubmit,
@@ -45,6 +58,7 @@ export const UserUpdateForm = ({ userData }) => {
       const res = await mutation.mutateAsync(data);
 
       if (user.fk_rol.nombre === "administrador" && res) {
+        refetch();
         navigation("/panel-control");
         toast.success("Usuario Actualizado con exito");
       }
@@ -74,9 +88,14 @@ export const UserUpdateForm = ({ userData }) => {
         numero_documento: Usuario.numero_documento,
         email: Usuario.email,
         tipo_documento: Usuario.tipo_documento,
+        fk_rol: Usuario.fk_rol,
       });
     }
   }, [Usuario, reset]);
+
+  if (loadingRol) {
+    return <>cargando</>;
+  }
 
   return (
     <>
@@ -217,19 +236,25 @@ export const UserUpdateForm = ({ userData }) => {
                 </div>
 
                 <Select
-                  options={[
-                    { name: "cedula", pantalla: "Cedula de Ciudadania" },
-                    {
-                      name: "tarjeta_identidad",
-                      pantalla: "Tarjeta de idendidad",
-                    },
-                  ]}
+                  options={tipoDocumento}
                   name="tipo_documento"
                   placeholder="Elija un tipo de documento"
                   valueKey="name"
                   textKey="pantalla"
                   register={register}
                   label="Tipo de documento"
+                  errors={errors}
+                />
+
+                <Select
+                  options={rolCache}
+                  name="fk_rol"
+                  placeholder="Elija un tipo de documento"
+                  valueKey="id"
+                  textKey="nombre"
+                  register={register}
+                  label="Tipo de documento"
+                  errors={errors}
                 />
 
                 <div className="mb-5 flex flex-col gap-10 sm:flex-row"></div>

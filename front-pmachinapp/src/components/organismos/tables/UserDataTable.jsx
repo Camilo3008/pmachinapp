@@ -4,9 +4,10 @@ import {
   Modal,
   useFetchDataUser,
   UserForm,
+  useRolQuery,
 } from "../../../index";
 import { useState } from "react";
-import { Button, useDisclosure } from "@nextui-org/react";
+import { Button, useDisclosure, Spinner } from "@nextui-org/react";
 import { useNavigate } from "react-router-dom";
 
 export const TableUser = () => {
@@ -14,22 +15,18 @@ export const TableUser = () => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [cambiarDatosTabla, setcambiarDatosTabla] = useState(true);
 
+  const { isLoading: loadinRol, rolCache } = useRolQuery();
+
   const navigate = useNavigate();
 
   const { usuarios, isLoading } = useFetchDataUser();
   if (!usuarios) {
-    return <div>No hay usuario autenticado</div>;
+    return <Spinner />;
   }
 
-  // prueba para roles
-
-  const pruebaRoles = [
-    {
-      nombre: "2",
-      apellidos: "Admin",
-      correo: "El mejor del sena",
-    },
-  ];
+  if (loadinRol) {
+    return <Spinner />;
+  }
 
   const informacionMa = usuarios.map((usuario) => ({
     nombre: usuario.first_name,
@@ -80,7 +77,7 @@ export const TableUser = () => {
   };
 
   if (isLoading) {
-    <>cargando</>;
+    return <>cargando</>;
   }
 
   return (
@@ -115,6 +112,8 @@ export const TableUser = () => {
         <UserForm />
       </Modal>
 
+      {/*  <UserForm /> */}
+
       <Table
         columnas={cambiarDatosTabla ? columnasUsuarios : columnasRoles}
         filas={
@@ -133,9 +132,9 @@ export const TableUser = () => {
                   </>
                 ),
               }))
-            : pruebaRoles
+            : rolCache
         }
-        elementosPorPagina={6}
+        elementosPorPagina={10}
       />
     </>
   );

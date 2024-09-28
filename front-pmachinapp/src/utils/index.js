@@ -1,1 +1,1 @@
-export { menus } from "./DataMenus";
+export { menus, tipoDocumento } from "./DataMenus";
