@@ -47,7 +47,7 @@ export const SideBar = ({ rol }) => {
           <ul className="mt-9 flex flex-col gap-4 relative">
             {menus?.map(
               (menu, i) =>
-                (menu.name !== "panel-control" || rol === "Administrador") && (
+                (menu.name !== "Panel control" || rol) && (
                   <li key={i} className="relative">
                     <Link
                       to={menu?.link}

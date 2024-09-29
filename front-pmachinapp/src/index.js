@@ -5,7 +5,7 @@ export * from "./components";
 export * from "./hooks/index";
 
 // rutas
-export { AppRouter } from "./routers/router";
+export * from "./routers/index";
 export { v } from "./styles/Variables";
 
 //sevice

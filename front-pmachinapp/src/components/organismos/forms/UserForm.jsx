@@ -4,7 +4,6 @@ import {
   useRegistroUsuario,
   useRolQuery,
   tipoDocumento,
-  useFetchDataUser,
 } from "../../../index";
 import { Button, Spinner } from "@nextui-org/react";
 import { useState } from "react";
@@ -13,11 +12,7 @@ import { toast } from "react-toastify";
 
 export const UserForm = () => {
   const [errores, setError] = useState({});
-  //
-  const [cargando, setCargando] = useState(false);
   const { isLoading: loadinRol, rolCache } = useRolQuery();
-  const { refetch } = useFetchDataUser();
-
   const {
     register,
     formState: { errors },
@@ -25,15 +20,13 @@ export const UserForm = () => {
     reset,
   } = useForm();
 
-  const registroUsuario = useRegistroUsuario();
+  const { mutateAsync: registroUsuario, isPending: isLoadingMutation } =
+    useRegistroUsuario();
 
   const handleOnSubmitDataUser = async (data) => {
-    setCargando(true);
     try {
-      await registroUsuario.mutateAsync(data);
+      await registroUsuario(data);
       reset();
-      setCargando(false);
-      refetch();
       toast.success("Registro de usuario con exito");
     } catch (error) {
       console.error(error.response.data);
@@ -152,10 +145,7 @@ export const UserForm = () => {
             />{" "}
           </div>
         </div>
-
-        {/* <input type="hidden" {...register("username")} value={"hola"} /> */}
-
-        <Button color={"primary"} type={"submit"} isLoading={cargando}>
+        <Button color={"primary"} type={"submit"} isLoading={isLoadingMutation}>
           Registrar
         </Button>
       </form>

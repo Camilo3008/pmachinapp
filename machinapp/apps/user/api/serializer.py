@@ -16,6 +16,7 @@ class UserSerializadorPost(ModelSerializer):
     def update(self, instance ,validated_data):
         instance.username = validated_data.get('username',instance.username)
         instance.email = validated_data.get('email',instance.email)
+        instance.numero_documento = validated_data.get('numero_documento', instance.numero_documento)
         instance.first_name = validated_data.get('first_name',instance.first_name)
         instance.last_name = validated_data.get('last_name',instance.last_name)
         instance.tipo_documento = validated_data.get('tipo_documento',instance.tipo_documento)

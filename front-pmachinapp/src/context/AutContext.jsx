@@ -9,6 +9,7 @@ export const AuthProvider = ({ children }) => {
   const [usuarioRol, setUsuarioRol] = useState("");
   const queryClient = useQueryClient();
 
+  // para poder hacer llamados a la api
   const [shouldFetch, setShouldFetch] = useState(false);
 
   const {
@@ -83,6 +84,7 @@ export const AuthProvider = ({ children }) => {
     isFetching,
     refetch,
     usuarioRol,
+    shouldFetch,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

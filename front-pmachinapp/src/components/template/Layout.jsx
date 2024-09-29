@@ -1,20 +1,33 @@
 import { Suspense } from "react";
 import { Outlet } from "react-router-dom";
+import {
+  Header,
+  Footer,
+  AvatarUser,
+  SideBar,
+  Breadcrumb,
+  useAuth,
+} from "../../index";
 
-import { Header, Footer, AvatarUser, SideBar, Breadcrumb } from "../../index";
+import { Spinner } from "@nextui-org/react";
 
 // eslint-disable-next-line react/prop-types
 export const Layout = ({ children, pagina }) => {
+  const { usuarioRol, isLoading } = useAuth();
+  if (isLoading) {
+    return <Spinner />;
+  }
+
   return (
     <>
       <div className="min-h-screen flex flex-col bg-gray-100 overflow-hidden">
-        {/*  <Header color="bg-white shadow-sm" contenido={<AvatarCom />} /> */}
-
         <Header contenido={<AvatarUser />} />
 
         <main className="flex flex-grow overflow-hidden">
           <aside className="hidden lg:block ">
-            <SideBar />
+            <SideBar
+              rol={usuarioRol.trim().toLowerCase().startsWith("administrador")}
+            />
           </aside>
 
           <section className="flex-grow p-2 lg:p-8 overflow-auto">

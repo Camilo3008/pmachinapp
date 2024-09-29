@@ -9,6 +9,7 @@ from apps.user.api.serializer import UserSerializadorPost, UserSerializadorGet, 
 
 # clase que permite crear un nuevo registro en la Base de Datos, en la tabla de usuarios
 class UserRegisterView(viewsets.ModelViewSet):
+    #permission_classes = [IsAuthenticated]
     serializer_class = UserSerializadorPost
     queryset = User.objects.all()
     http_method_names = ['post', 'get','put']   

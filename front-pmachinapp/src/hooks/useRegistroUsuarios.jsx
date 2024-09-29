@@ -1,7 +1,9 @@
 import { axiosClient } from "../service/axiosClient";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export const useRegistroUsuario = () => {
+  const queryCliente = useQueryClient();
+
   return useMutation({
     /* http://127.0.0.1:8000/api/user/registro/ */
     mutationFn: async (dataUsuario) => {
@@ -15,7 +17,10 @@ export const useRegistroUsuario = () => {
       return await axiosClient.post("user/user/", dataUsuario);
     },
 
-    onSuccess: (response) => {
+    onSuccess: async (response) => {
+      await queryCliente.invalidateQueries({
+        queryKey: ["usuarios-cache"],
+      });
       return response.data;
     },
     onError: (error) => {

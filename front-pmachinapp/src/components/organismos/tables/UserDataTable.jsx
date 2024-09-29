@@ -32,14 +32,21 @@ export const TableUser = () => {
     nombre: usuario.first_name,
     apellidos: usuario.last_name,
     email: usuario.email,
-    numero_identificacion: usuario.numero_documento,
+    numero_identificacion: String(usuario.numero_documento),
     tipo_identificacion: usuario.tipo_documento,
-    Rol: usuario.fk_rol,
+    username: usuario.username,
   }));
 
   const buscarUsuario = (buscar) => {
     const filtrar = informacionMa.filter((usuario) => {
-      return usuario.nombre.toLowerCase().includes(buscar.toLowerCase());
+      return (
+        usuario.nombre.toLowerCase().includes(buscar.toLowerCase()) ||
+        usuario.email.toLowerCase().includes(buscar.toLowerCase()) ||
+        usuario.username.toLowerCase().includes(buscar.toLowerCase()) ||
+        usuario.numero_identificacion
+          .toLowerCase()
+          .includes(buscar.toLowerCase())
+      );
     });
 
     setfiltrarUsuario(filtrar);
@@ -51,7 +58,7 @@ export const TableUser = () => {
     "Correo",
     "Identificacion",
     "Tipo de documento",
-    "rol",
+    "UserName",
     "acciones",
   ];
 
@@ -61,7 +68,7 @@ export const TableUser = () => {
   // tomar el id del usuario para poder editarlo
   const handleEdit = (numero_identificacion) => {
     const resultadoUsuario = usuarios.find(
-      (persona) => persona.numero_documento === numero_identificacion
+      (persona) => String(persona.numero_documento) === numero_identificacion
     );
 
     navigate("/panel-control/edit", { state: { resultadoUsuario } });
