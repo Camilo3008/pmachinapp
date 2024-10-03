@@ -25,6 +25,7 @@ from apps.roles.api.router import router_rol
 from apps.sedes.api.router import router_sede
 from apps.areas.api.router import router_areas
 from apps.mantenimientos.api.router import router_mantenimiento
+from apps.partes_mantenimientos.api.router import router_partes_mantenimiento
 
 
 from drf_yasg.views import get_schema_view
@@ -48,6 +49,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router_rol.urls)),
     path('api/', include(router_mantenimiento.urls)),
+    path('api/', include(router_partes_mantenimiento.urls)),
     path('api/', include(router_sede.urls)),
     path('api/', include(router_areas.urls)),
 

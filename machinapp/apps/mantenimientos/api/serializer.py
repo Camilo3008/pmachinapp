@@ -1,18 +1,13 @@
 from rest_framework import serializers
 from apps.mantenimientos.models import Mantenimiento
 from apps.fichas.models import Ficha
+from apps.tipomantenimiento.models import TipoMantenimiento
 
 
 class MantenimientoSerializer(serializers.ModelSerializer):
     fk_ficha = serializers.PrimaryKeyRelatedField(queryset=Ficha.objects.all())
+    fk_tipo_mantenimiento = serializers.PrimaryKeyRelatedField(queryset=TipoMantenimiento.objects.all())
     class Meta:
         model = Mantenimiento
-        fields = ['id','codigo','descripcion','estado','fecha_realizacion', 'fk_ficha']
-    
-    
-    def create(self, validated_data):
-        fk_ficha_data = validated_data.pop("fk_ficha")
-        fk_ficha = Ficha.objects.create(**fk_ficha_data)
-        parte = Mantenimiento.objects.create(fk_ficha=fk_ficha,**validated_data)
-
-        return parte
+        fields = ['id','codigo','descripcion','estado','fecha_proxima', 'descripcion', 'ficha_soporte', 'costo_final', 'fk_ficha', 'fk_tipo_mantenimiento']
+        

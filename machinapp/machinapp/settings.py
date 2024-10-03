@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'apps.variables',
     'apps.detalles',
     'apps.actividades',
+    'apps.partes_mantenimientos',
 ]
 
 MIDDLEWARE = [
